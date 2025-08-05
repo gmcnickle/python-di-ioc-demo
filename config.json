@@ -1,0 +1,14 @@
+{
+  "available_loggers": [
+    "structlog",
+    "seqlog",
+    "mocklog"
+  ],
+  "logger_factory": "seqlog",
+  "available_services": [
+    "console",
+    "windows",
+    "web"
+  ],
+  "service_type": "web" 
+}

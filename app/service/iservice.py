@@ -1,0 +1,6 @@
+from typing import Protocol
+from app.logging.ilogger import ILogger
+
+class IService(Protocol):
+    def __init__(self, logger: ILogger) -> None: ...
+    def run(self) -> None: ...

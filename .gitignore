@@ -1,0 +1,56 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# VS Code & PyCharm settings (optional, but common)
+.vscode/
+.idea/
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# mypy type checker cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyInstaller
+*.spec
+dist/
+build/
+
+# Unit test / logging artifacts
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Test results
+test-results/
+test-output/
+
+# Mac OS metadata
+.DS_Store
+
+# Environment variable files
+.env
+.env.*
+
+# Compiled C extensions
+*.so
+
+# Local config
+config.local.json
