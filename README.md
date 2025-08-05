@@ -13,7 +13,7 @@ This project demonstrates a clean, type-safe architecture for building Python ap
 - **Static type checking** with `mypy`
 - **Unit testing** with `pytest` and mock loggers
 
-## 🤔 What is Dependency Injection and Why Is It Important?
+## What is Dependency Injection and Why Is It Important?
 
 Dependency Injection (DI) is a design pattern that promotes **loose coupling** by supplying a class’s dependencies — like loggers, services, or database clients — from the outside, rather than constructing them internally.
 
