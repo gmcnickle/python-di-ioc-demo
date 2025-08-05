@@ -15,7 +15,7 @@ This project demonstrates a clean, type-safe architecture for building Python ap
 
 ---
 
-## 📦 Project Overview
+## Project Overview
 
 ```text
 app/
@@ -43,7 +43,7 @@ pytest.ini                        # Configuration for pytest
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 The `config.json` file drives the application wiring and behavior:
 
@@ -68,7 +68,7 @@ You can change `service_type` and `logger_factory` to switch between implementat
 
 ---
 
-## 🧠 Why Use a Registry for Logger Factories?
+## Why Use a Registry for Logger Factories?
 
 Instead of using a `providers.Selector()` inside the container, we use a separate `LOGGER_REGISTRY`:
 
@@ -93,7 +93,7 @@ container.logger_factory.override(logger_factory)
 
 ---
 
-## 🛠 Type Safety
+## Type Safety
 
 ### `TypedDict` for Configuration
 
@@ -117,7 +117,7 @@ This is safe and typical when using `TypedDict` + IoC.
 
 ---
 
-## 🧪 Testing
+## Testing
 
 Tests use a `MockLogger` to validate behavior without requiring a real logger backend.
 
@@ -136,7 +136,7 @@ def test_services_log_expected_messages(...):
 
 ---
 
-## ✅ Summary
+## Summary
 
 This project demonstrates:
 
@@ -226,7 +226,7 @@ For runtime-validated configs, consider integrating `pydantic`.
 
 ---
 
-## 📜 License
+## License
 
 MIT — free to use, modify, and learn from.
 
@@ -237,7 +237,7 @@ MIT — free to use, modify, and learn from.
 
 This project was collaboratively designed and developed through interactive sessions with ChatGPT, combining human experience and AI-driven support to solve real-world development challenges.
 
-### Closing Thoughts
+## Closing Thoughts
 I hope this gives you some idea on how to loosely couple classes and their dependencies in python.  At the end of the day, doing so will make your code far easier to test, change, and maintain. Dependency injection is a powerful pattern for achieving these goals, but it does add some complexity initially.  I hope this has helped walk you through those challenges.
 
 The provided code was meant to be illustrative of the concept, and not a framework itself.  Use these concepts as a foundation, and adapt them to fit your own projects and needs.
