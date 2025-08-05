@@ -13,7 +13,43 @@ This project demonstrates a clean, type-safe architecture for building Python ap
 - **Static type checking** with `mypy`
 - **Unit testing** with `pytest` and mock loggers
 
----
+## 🤔 What is Dependency Injection and Why Is It Important?
+
+Dependency Injection (DI) is a design pattern that promotes **loose coupling** by supplying a class’s dependencies — like loggers, services, or database clients — from the outside, rather than constructing them internally.
+
+One common problem in Python codebases is the need to **manually pass shared resources**, like a logger, to dozens or even hundreds of classes. This quickly becomes unwieldy as more shared dependencies are added, leading to tangled constructors and brittle code.
+
+DI helps solve this by letting you:
+
+- **Centralize configuration** of shared services (like logging)
+- **Swap implementations** at runtime or for testing
+- **Simplify class construction**, even when many dependencies are involved
+- **Avoid global state** without the overhead of passing objects everywhere
+
+Instead of this:
+
+```python
+class MyClass:
+    def __init__(self):
+        self.logger = Logger()
+```
+
+You do this:
+
+```python
+class MyClass:
+    def __init__(self, logger: ILogger):
+        self.logger = logger
+```
+
+And let the IoC container handle the wiring:
+
+```python
+my_class = container.my_class()  # logger is injected automatically
+```
+
+This makes it easier to test, extend, and reason about your code — and keeps your constructors clean and focused.
+
 
 ## Project Overview
 
@@ -41,8 +77,6 @@ mypy.ini                          # Configuration for mypy
 pytest.ini                        # Configuration for pytest
 ```
 
----
-
 ## Configuration
 
 The `config.json` file drives the application wiring and behavior:
@@ -65,8 +99,6 @@ The `config.json` file drives the application wiring and behavior:
 ```
 
 You can change `service_type` and `logger_factory` to switch between implementations without modifying any code.
-
----
 
 ## Why Use a Registry for Logger Factories?
 
@@ -91,8 +123,6 @@ logger_factory = configure_logging(config)
 container.logger_factory.override(logger_factory)
 ```
 
----
-
 ## Type Safety
 
 ### `TypedDict` for Configuration
@@ -115,8 +145,6 @@ container.config.from_dict(cast(dict[str, Any], config))
 
 This is safe and typical when using `TypedDict` + IoC.
 
----
-
 ## Testing
 
 Tests use a `MockLogger` to validate behavior without requiring a real logger backend.
@@ -134,8 +162,6 @@ def test_services_log_expected_messages(...):
     assert any(expected_log in msg for msg in mock_logger.logs)
 ```
 
----
-
 ## Summary
 
 This project demonstrates:
@@ -147,8 +173,6 @@ This project demonstrates:
 - Fast, isolated unit testing
 
 If you're building maintainable Python applications that may grow in complexity, this structure offers a solid foundation.
-
----
 
 ## Walkthrough
 
@@ -185,8 +209,6 @@ This startup sequence ensures that configuration and logging are available from 
 
 > ⚠️ You could design the container to load configuration and create the logger internally, but this introduces uncertainty around when the logger becomes usable. It's often better to handle configuration and bootstrap logging externally, then inject them into the container explicitly. This ensures safe, predictable startup behavior.
 
----
-
 ### 💡 Pro Tip: Services vs. Providers
 
 In .NET, IoC containers typically refer to registered components as **services**. You’ll often see code like:
@@ -214,8 +236,6 @@ This distinction reflects the focus: .NET emphasizes what you're getting (*servi
 This is especially helpful for developers transitioning between ecosystems.
 
 
----
-
 ## 🚧 Known Limitations / Notes
 
 - Python's type system requires occasional use of `cast()` with `TypedDict` and DI frameworks
@@ -223,8 +243,6 @@ This is especially helpful for developers transitioning between ecosystems.
 - No runtime type enforcement — use `mypy` to validate correctness
 
 For runtime-validated configs, consider integrating `pydantic`.
-
----
 
 ## License
 
